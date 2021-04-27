@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@mixin phone {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: 769px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.layer .content-wrapper {
+  position: absolute;
+  width: 100vw;
+  min-height: 100%;
+}
+
+.layer img {
+  position: absolute;
+  height: 80vh;
+  // max-height: 30em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include phone {
+    height: 100vw;
+  }
+  @include desktop {
+    height: 80vh;
+  }
+}
+
+.bottom {
+  background-color: black;
+  z-index: 1;
+}
+
+.top {
+  background: #eee;
+
+  //   color: black;
+  z-index: 2;
+  width: 50vw;
+}
+
+// .bottom img {
+//   filter: grayscale(1);
+// }
+
+.handle {
+  position: absolute;
+  height: 100%;
+  display: block;
+  background-color: black;
+  width: 0px;
+  top: 0;
+  left: 50%;
+  z-index: 3;
+}
+
+.skewed .handle {
+  top: 50%;
+  transform: rotate(30deg) translateY(-50%);
+  height: 200%;
+  transform-origin: top;
+}
+
+.skewed .top {
+  transform: skew(-30deg);
+  margin-left: -1000px;
+  width: calc(50vw + 1000px);
+}
+
+.skewed .top .content-wrapper {
+  transform: skew(30deg);
+  margin-left: 1000px;
+}
