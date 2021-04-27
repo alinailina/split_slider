@@ -12,6 +12,7 @@ function App() {
 
   useEffect(() => {
     if (wrapper.current.className === "skewed") {
+      // eslint-disable-next-line
       skew = 1000;
     }
   }, []);
